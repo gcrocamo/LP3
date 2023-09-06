@@ -1,4 +1,6 @@
 package multimetro;
+
+//teste
 import java.util.Scanner;
 
 public class Multimetro {
@@ -17,30 +19,30 @@ public class Multimetro {
 
         // Fechar o Scanner quando não for mais necessário
         scanner.close();
-		// Cálculo da media
+        // Cálculo da media
         double media = calcularMedia(volts, NUM_AMOSTRAS);
         System.out.println("\nMedia: " + media);
-        
+
         // Cálculo do desvio padrão
         double desvioPadrao = calcularDesvioPadrao(volts, media, NUM_AMOSTRAS);
         System.out.println("Desvio Padrão: " + desvioPadrao);
-        
+
         // Situação do multímetro
-        System.out.println("Situação: " + ((desvioPadrao > media*0.1) ? "Multímetro com problema." : "Multímetro OK."));
+        System.out
+                .println("Situação: " + ((desvioPadrao > media * 0.1) ? "Multímetro com problema." : "Multímetro OK."));
     }
-	public static double calcularMedia(double[] amostras, int numAmostras){
-		double soma = 0;
-		for(double amostra : amostras)
-			soma += amostra;
-		return soma/numAmostras;
-	}
 
-	public static double calcularDesvioPadrao(double[] amostras, double media, int numAmostras){
-		double soma = 0;
-		for(double amostra : amostras)
-			soma += Math.pow(amostra - media, 2);
-		return Math.sqrt(soma/numAmostras);
-	}
-}   
+    public static double calcularMedia(double[] amostras, int numAmostras) {
+        double soma = 0;
+        for (double amostra : amostras)
+            soma += amostra;
+        return soma / numAmostras;
+    }
 
-
+    public static double calcularDesvioPadrao(double[] amostras, double media, int numAmostras) {
+        double soma = 0;
+        for (double amostra : amostras)
+            soma += Math.pow(amostra - media, 2);
+        return Math.sqrt(soma / numAmostras);
+    }
+}
