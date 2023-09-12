@@ -8,24 +8,19 @@ def calcularDesvioPadrao(amostras, media):
     soma = sum((amostra - media) ** 2 for amostra in amostras)
     return (soma / len(amostras)) ** 0.5
 
-def main():
-    volts = []
+volts = []
+for i in range(NUM_AMOSTRAS):
+    amostra = float(input(f"Digite o valor da amostra {i + 1}: "))
+    volts.append(amostra)
 
-    for i in range(NUM_AMOSTRAS):
-        amostra = float(input(f"Digite o valor da amostra {i + 1}: "))
-        volts.append(amostra)
+media = calcularMedia(volts)
+print("\nMédia:", media)
 
-    # Cálculo da média
-    media = calcularMedia(volts)
-    print("\nMédia:", media)
+desvioPadrao = calcularDesvioPadrao(volts, media)
+print("Desvio Padrão:", desvioPadrao)
 
-    # Cálculo do desvio padrão
-    desvioPadrao = calcularDesvioPadrao(volts, media)
-    print("Desvio Padrão:", desvioPadrao)
-
-    # Situação do multímetro
-    situacao = "Multímetro com problema." if desvioPadrao > media * 0.1 else "Multímetro OK."
-    print("Situação:", situacao)
-
-if __name__ == "__main__":
-    main()
+if desvioPadrao > media * 0.1:
+    situacao = "Multímetro com problema."
+else:
+    situacao = "Multímetro OK."
+print("Situação:", situacao)
