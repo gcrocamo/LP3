@@ -1,0 +1,30 @@
+modelo venderLampada
+início do modelo
+    dado faturamento, lucro, estoque;
+
+    operacao qtdEstoque(quantidade)
+        inicio
+            estoque = quantidade;
+        fim
+    
+    operação qtdFaturada(valor)
+        início
+            faturamento = valor * quantidade;
+        fim
+    
+    operação qtdLucro(faturamento)
+        início
+            lucro = faturamento * 0,7;
+        fim
+    
+    operação mostraDados()
+        início
+            imprime "Estoque: ";
+            imrpime estoque;
+            imprime "Faturamento: ";
+            imprime faturamento;
+            imprime "Lucro: ";
+            imprime lucro;
+        fim
+
+fim do modelo

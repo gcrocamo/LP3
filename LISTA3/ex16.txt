@@ -1,0 +1,88 @@
+modelo Data
+início do modelo
+    dado dia, mês, ano, diaDaSemana;
+
+    operação inicializaData(umDia, umMês, umAno)
+        início
+            se éDataVálida(umDia, umMês, umAno)
+                início
+                    dia = umDia;
+                    mês = umMês;
+                    ano = umAno;
+                    calcularDiaDaSemana();
+                fim
+            senão
+                início
+                    dia = 0;
+                    mês = 0;
+                    ano = 0;  
+                    diaDaSemana = "Data inválida";    
+                fim
+        fim
+
+    operação éDataVálida(umDia, umMês, umAno)
+        início
+            se (umMês >= 1 e umMês <= 12)
+                início
+                    se (umMês == 2)
+                        se (((umAno % 4 == 0) e (umAno % 100 != 0)) ou (umAno % 400 == 0))
+                            se (umDia >= 1 e umDia <= 29)
+                                retorna verdadeiro;
+                            senão
+                                retorna falso;
+                        senão
+                            se (umDia >= 1 e umDia <= 28)
+                                retorna verdadeiro;
+                            senão
+                                retorna falso;
+                    senão se ((umMês == 4 or umMês == 6 or umMês == 9 or umMês == 11))
+                        se (umDia >= 1 e umDia <= 30)
+                            retorna verdadeiro;
+                        senão
+                            retorna falso;
+                    senão se (umDia >= 1 and umDia <= 31)
+                        retorna verdadeiro;
+                    senão
+                        retorna falso;
+                fim
+            senão
+                retorna falso;
+        fim
+
+    operação calcularDiaDaSemana()
+        início
+            inteiro Y, M, D;
+            Y = ano;
+            M = mês;
+            D = dia;
+            //Usando o algoritmo de Zeller's Congruence
+            se (M < 3)
+                Y = Y - 1;
+                M = M + 12;
+            
+            inteiro K = Y % 100;
+            inteiro J = Y / 100;
+
+            diaDaSemana = (D + 13 * (M + 1) / 5 + K + K / 4 + J / 4 - 2 * J) % 7;
+
+            escolha (diaDaSemana)
+                caso 0
+                    diaDaSemana = "Domingo";
+                caso 1
+                    diaDaSemana = "Segunda-feira";
+                caso 2
+                    diaDaSemana = "Terça-feira";
+                caso 3
+                    diaDaSemana = "Quarta-feira";
+                caso 4
+                    diaDaSemana = "Quinta-feira";
+                caso 5
+                    diaDaSemana = "Sexta-feira";
+                caso 6
+                    diaDaSemana = "Sábado";
+                caso contrário
+                    diaDaSemana = "Erro";
+            fim escolha
+        fim
+
+fim do modelo
